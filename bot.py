@@ -545,18 +545,28 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ─── Main ────────────────────────────────────────────────────
-def main():
-    import asyncio
-    import sys
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
-    if sys.version_info >= (3, 12):
-        try:
-            loop = asyncio.get_event_loop()
-            if loop.is_closed():
-                raise RuntimeError
-        except RuntimeError:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
+class DummyHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    
+    def log_message(self, format, *args):
+        pass  # Silence HTTP logs
+
+def run_dummy_server():
+    port = int(os.getenv("PORT", 8080))
+    server = HTTPServer(("0.0.0.0", port), DummyHandler)
+    server.serve_forever()
+
+def main():
+    # Start dummy HTTP server in background thread
+    thread = threading.Thread(target=run_dummy_server, daemon=True)
+    thread.start()
+    logger.info("Dummy HTTP server started.")
 
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
