@@ -510,7 +510,13 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ─── Main ─────────────────────────────────────────────────────
+import asyncio
+import sys
+
 def main():
+    if sys.version_info >= (3, 12):
+        asyncio.set_event_loop(asyncio.new_event_loop())
+    
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", start))
