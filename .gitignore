@@ -1,7 +1,0 @@
-.env
-__pycache__/
-*.pyc
-downloads/
-db.json
-*.mkv
-*.mp4
