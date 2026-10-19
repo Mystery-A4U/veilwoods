@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#08110b">
+  <title>VEILWOODS — 50 Days</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="game"></div>
+
+  <div id="hud">
+    <div class="brand">VEILWOODS <span>50 DAYS</span></div>
+    <div class="topbar">
+      <div id="day">DAY 01</div>
+      <div id="clock">08:00</div>
+      <div id="weather">CLEAR</div>
+    </div>
+    <div class="stats">
+      <div><label>HP</label><div class="bar"><i id="hp"></i></div></div>
+      <div><label>HUNGER</label><div class="bar"><i id="hunger"></i></div></div>
+      <div><label>THIRST</label><div class="bar"><i id="thirst"></i></div></div>
+    </div>
+    <div class="resource">🪵 <b id="wood">0</b> &nbsp; 🍓 <b id="berries">0</b> &nbsp; 🌿 <b id="medicine">0</b></div>
+    <div class="camp">🔥 CAMPFIRE <b>LV <span id="campLevel">1</span></b></div>
+    <div id="message"></div>
+  </div>
+
+  <div id="crosshair">+</div>
+  <div id="interactHint">E — INTERACT</div>
+
+  <div id="mobile">
+    <div id="stick"><div id="knob"></div></div>
+    <button id="lookPad" aria-label="look"></button>
+    <div class="actions">
+      <button id="attackBtn">AXE</button>
+      <button id="sprintBtn">RUN</button>
+      <button id="interactBtn">USE</button>
+    </div>
+  </div>
+
+  <div id="start">
+    <div class="panel">
+      <div class="logo">VEILWOODS</div>
+      <div class="subtitle">SURVIVE THE 50 DAYS</div>
+      <p>Explore the island. Search the town. Gather before night. Protect the campfire.</p>
+      <button id="startBtn">ENTER THE FOREST</button>
+      <small>PC: WASD + Mouse • Mobile: Joystick + touch look</small>
+    </div>
+  </div>
+
+  <div id="win" class="overlay hidden">
+    <div class="panel">
+      <div class="logo">EMERALD FOUND</div>
+      <p>You survived the island and escaped the Guardian.</p>
+      <button onclick="location.reload()">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script type="module" src="./js/game.js"></script>
+</body>
+</html>
